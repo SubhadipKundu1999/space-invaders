@@ -4,8 +4,11 @@ class Player {
 
         this.velocity = {
             x: 0,
-            y: 0
+            y: 0,
         }
+
+        this.rotation = 0;
+
         // this.image
         const image = new Image()
         image.src = "../assets/spaceship.png";
@@ -23,14 +26,37 @@ class Player {
         }
 
     }
-
     draw() {
 
-        // c.fillStyle = 'red';
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height);
-        if (this.image) {
+        c.save(); //to save the current statedd
+        c.translate(
+            player.position.x + player.width / 4,
+            player.position.y + player.height / 2
+        )
+        c.rotate(this.rotation);
 
-            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        c.translate(
+
+            - player.position.x - player.width / 2,
+            - player.position.y - player.height / 2
+        )
+        c.drawImage(
+            this.image,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        );
+        c.restore();
+
+
+
+    }
+    update() {
+
+        if (this.image) {
+            this.draw();
+            this.position.x += this.velocity.x;
         }
     }
 }
