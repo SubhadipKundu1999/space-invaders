@@ -33,6 +33,8 @@ const player = new Player();
 let projectiles = []
 
 
+//Inveders instace
+let inveders = new Inveders();
 
 
 
@@ -42,6 +44,7 @@ function animate() {
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
+    inveders.update();
 
     projectiles.forEach((projectile, index) => {
 
