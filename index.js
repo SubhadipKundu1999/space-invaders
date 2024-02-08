@@ -33,8 +33,9 @@ const player = new Player();
 let projectiles = []
 
 
-//Inveders instace
-let inveders = new Inveders();
+//grid instace
+let grids = [new Grid()];
+
 
 
 
@@ -44,7 +45,14 @@ function animate() {
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
-    inveders.update();
+
+    grids.forEach(grid => {
+        grid.update();
+        grid.inveders.forEach(inveder => {
+            inveder.update({ velocity: grid.velocity });
+        })
+    })
+
 
     projectiles.forEach((projectile, index) => {
 

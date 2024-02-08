@@ -1,6 +1,6 @@
 class Inveders {
 
-    constructor() {
+    constructor({ position }) {
 
         this.velocity = {
             x: 0,
@@ -18,8 +18,8 @@ class Inveders {
             this.height = image.height * scale;
 
             this.position = {
-                x: canvas.width / 2 - this.width,
-                y: canvas.height / 2
+                x: position.x,
+                y: position.y
             }
 
         }
@@ -36,12 +36,12 @@ class Inveders {
         );
 
     }
-    update() {
+    update({ velocity }) {
 
         if (this.image) {
             this.draw();
-            this.position.x += this.velocity.x;
-            this.position.y += this.velocity.y;
+            this.position.x += velocity.x;
+            this.position.y += velocity.y;
         }
     }
 }
