@@ -25,6 +25,10 @@ let keys = {
 
 let move = 1;
 
+//frames
+let frames = 0;
+let randomInterval = Math.floor((Math.random() * 500) + 500);
+
 
 //player instance
 const player = new Player();
@@ -34,7 +38,8 @@ let projectiles = []
 
 
 //grid instace
-let grids = [new Grid()];
+let grids = [];
+
 
 
 
@@ -80,9 +85,21 @@ function animate() {
         player.rotation = 0;
     }
 
+    console.log(randomInterval);
 
-
-
+    //spawing enemies
+    // console.log(frames);
+    // if (frames % 1000 === 0) {
+    //     grids.push(new Grid())
+    // }
+    // frames++
+    if (frames % randomInterval === 0) {
+        randomInterval = Math.floor((Math.random() * 500) + 500);
+        frames = 0;
+        grids.push(new Grid())
+        console.log(frames);
+    }
+    frames++
 
 }
 
