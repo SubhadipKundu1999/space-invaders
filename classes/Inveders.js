@@ -10,7 +10,7 @@ class Inveders {
         this.rotation = 0;
         // this.image
         const image = new Image()
-        image.src = "../assets/invader.png";
+        image.src = "./../assets/invader.png";
         image.onload = () => {
             const scale = 1
             this.image = image;

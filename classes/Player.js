@@ -10,7 +10,7 @@ class Player {
         this.rotation = 0;
         // this.image
         const image = new Image()
-        image.src = "../assets/spaceship.png";
+        image.src = "./../assets/spaceship.png";
         image.onload = () => {
             const scale = 0.15
             this.image = image;
