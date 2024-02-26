@@ -53,8 +53,30 @@ function animate() {
 
     grids.forEach(grid => {
         grid.update();
-        grid.inveders.forEach(inveder => {
+        grid.inveders.forEach((inveder, i) => {
             inveder.update({ velocity: grid.velocity });
+            projectiles.forEach((projectile, p) => {
+                if (
+                    projectile.position.y - projectile.radius <= inveder.position.y + inveder.height
+                    && projectile.position.y + projectile.radius >= inveder.position.y
+                    && projectile.position.x - projectile.radius <= inveder.position.x + inveder.width
+                    && projectile.position.x + projectile.radius >= inveder.position.x
+                ) {
+                    setTimeout(() => {
+
+                        //remove invader and projectile
+                        grid.inveders.splice(i, 1);
+                        projectiles.splice(p, 1);
+
+                        if (grid.inveder.length > 0) {
+                            const firstInveder = grid.inveders[0];
+                            const lastInveder = grid.inveders[inveders.length - 1];
+                            grid.width = lastInveder.position.x - firstInveder.position.x + lastInveder.width;
+                            grid.position.x = firstInveder.position.x;
+                        }
+                    }, 0)
+                }
+            })
         })
     })
 
@@ -85,19 +107,10 @@ function animate() {
         player.rotation = 0;
     }
 
-    console.log(randomInterval);
-
-    //spawing enemies
-    // console.log(frames);
-    // if (frames % 1000 === 0) {
-    //     grids.push(new Grid())
-    // }
-    // frames++
     if (frames % randomInterval === 0) {
         randomInterval = Math.floor((Math.random() * 500) + 500);
         frames = 0;
         grids.push(new Grid())
-        console.log(frames);
     }
     frames++
 
